@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SignUp</title>
+
+    <link rel="stylesheet" href="/Style/style.css" />
+
+    <link rel="stylesheet" href="/Style/styleHeader.css">
+    <script src="/Script/script.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <section class="main-page">
+      <header>
+        <ul>
+          <li><a href="/#about">Про Нас</a></li>
+          <li><a href="LogIn.html">Вхід</a></li>
+          <li><a href="SignUp.html">Реєстрація</a></li>
+          <li class="dropdown">
+            <a href="#" onclick="toggleSocials()">Соцмережі</a>
+            <ul class="social-links" id="socialLinks">
+              <li><a href="https://www.facebook.com/profile.php?id=100019092344173" target="_blank">Facebook</a></li>
+              <li><a href="https://x.com/qnYhmlAndRWOJJu" target="_blank">Twitter</a></li>
+              <li><a href="https://www.instagram.com/mikitiiiura/" target="_blank">Instagram</a></li>
+            </ul>
+          </li>
+          <li><a href="#" onclick="showMessage()">Навчання у нас</a></li>
+          <li>
+            <a href="/#">
+              <img src="/Images/home_icon.png" alt="Головна" class="menu-image" />
+            </a>
+          </li>
+        </ul>
+      </header>
+
+      <div id="message" class="message-box">На даний час навчання не працює</div>
+
+      <div class="wraper">
+        <div class="login-register-container2">
+          <h2 class="register-container-TextLog">Реєстрація</h2>
+          <form id="registerForm">
+            <label class="label1" for="email">Email</label>
+            <input type="email" id="email" name="email" required />
+
+            <label class="label2" for="password">Password</label>
+            <input type="password" id="password" name="password" required />
+
+            <label class="label2" for="fullName">Full Name</label>
+            <input type="text" id="fullName" name="fullName" required />
+
+            <button class="btn-register-container" type="submit">
+              Зареєструватися
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+    <script>
+      document
+        .getElementById("registerForm")
+        .addEventListener("submit", async function (event) {
+          event.preventDefault(); // Відміняємо стандартну поведінку форми (перезавантаження сторінки)
+
+          // Отримуємо значення з полів форми
+          const email = document.getElementById("email").value;
+          const password = document.getElementById("password").value;
+          const fullName = document.getElementById("fullName").value;
+
+          try {
+            // Відправляємо POST-запит на сервер
+            const response = await fetch("http://localhost:3000/register", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ email, password, full_name: fullName }),
+            });
+
+            // Отримуємо відповідь від сервера
+            const result = await response.json();
+
+            if (response.ok) {
+              // Якщо користувач успішно зареєстрований
+              alert("Реєстрація пройшла успішно");
+              console.log("Registered user:", result);
+
+              // Зберігаємо користувача в LocalStorage
+              localStorage.setItem("user", JSON.stringify(result));
+
+              // Перенаправляємо користувача на сторінку входу або профілю
+              window.location.href = "LogIn.html";
+            } else {
+              // Якщо сталася помилка
+              alert(result.message || "Помилка реєстрації");
+            }
+          } catch (error) {
+            console.error("Error:", error);
+            alert("Не вдалося виконати реєстрацію");
+          }
+        });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProgDev</title>
+    <link rel="stylesheet" href="/Style/style.css">
+
+    <link rel="stylesheet" href="/Style/styleHeader.css">
+    <script src="/Script/script.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<section class="main-page">   
+    <header>
+        <ul>
+          <li><a href="/#about">Про Нас</a></li>
+          <li><a href="LogIn.html">Вхід</a></li>
+          <li><a href="SignUp.html">Реєстрація</a></li>
+          <li class="dropdown">
+            <a href="#" onclick="toggleSocials()">Соцмережі</a>
+            <ul class="social-links" id="socialLinks">
+              <li><a href="https://www.facebook.com/profile.php?id=100019092344173" target="_blank">Facebook</a></li>
+              <li><a href="https://x.com/qnYhmlAndRWOJJu" target="_blank">Twitter</a></li>
+              <li><a href="https://www.instagram.com/mikitiiiura/" target="_blank">Instagram</a></li>
+            </ul>
+          </li>
+          <li><a href="#" onclick="showMessage()">Навчання у нас</a></li>
+          <li>
+            <a href="/#">
+              <img src="/Images/home_icon.png" alt="Головна" class="menu-image" />
+            </a>
+          </li>
+        </ul>
+      </header>
+
+      <div id="message" class="message-box">На даний час навчання не працює</div>
+    <div class="wraper">
+    <div class="main-page-text-container">
+        <h2 class="main-page-text-GoodEvening">Добробого вечора, ми з України</h1>
+        <h1 class="main-page-text-ProgDev">ProgDev</h1>
+        <p class="main-page-text-WeAre">Ми — українська компанія, яка вже понад 4 роки успішно працює на ринку розробки програмних систем.</p>
+    
+        <button class="main-page-btm" onclick="goToLogin()">Увійти</button>
+    </div>
+</div>
+</section>
+
+<section id="about">
+    <h2 class="main-section-Interest">Цікаві факти про нашу діяльність</h2>
+    <ul class="main-section-li-content">
+        <li>Ми працюємо на ринку розробки програмних систем вже понад 4 роки, зосереджуючись на інноваціях та якості.</li>
+        <li>Наші програмні рішення використовуються компаніями з різних галузей – від фінансів до логістики.</li>
+        <li>Кожен проект ми розробляємо індивідуально, щоб максимально відповідати потребам наших клієнтів.</li>
+        <li>Ми використовуємо найсучасніші технології, щоб створювати продукти, що витримують виклики часу.</li>
+        <li>За цей час ми допомогли понад 30 бізнесам оптимізувати процеси та підвищити ефективність.</li>
+        <li>Наша команда — це понад 30 талановитих розробників, дизайнерів та інженерів, які працюють над кожним проектом.</li>
+        <li>Ми постійно вдосконалюємо наші навички та технологічні рішення, щоб залишатися на передовій індустрії.</li>
+        <li>Обираючи нас, ви отримуєте не лише надійного партнера, а й команду, яка дійсно піклується про результат.</li>
+    </ul>
+</section>
+</body>
+</html>

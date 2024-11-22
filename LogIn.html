@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LogIn</title>
+
+   
+        <link rel="stylesheet" href="/Style/style.css" />
+
+        <link rel="stylesheet" href="/Style/styleHeader.css">
+    <script src="/Script/script.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <section class="main-page">
+      <header>
+        <ul>
+          <li><a href="/#about">Про Нас</a></li>
+          <li><a href="LogIn.html">Вхід</a></li>
+          <li><a href="SignUp.html">Реєстрація</a></li>
+          <li class="dropdown">
+            <a href="#" onclick="toggleSocials()">Соцмережі</a>
+            <ul class="social-links" id="socialLinks">
+              <li><a href="https://www.facebook.com/profile.php?id=100019092344173" target="_blank">Facebook</a></li>
+              <li><a href="https://x.com/qnYhmlAndRWOJJu" target="_blank">Twitter</a></li>
+              <li><a href="https://www.instagram.com/mikitiiiura/" target="_blank">Instagram</a></li>
+            </ul>
+          </li>
+          <li><a href="#" onclick="showMessage()">Навчання у нас</a></li>
+          <li>
+            <a href="/#">
+              <img src="/Images/home_icon.png" alt="Головна" class="menu-image" />
+            </a>
+          </li>
+        </ul>
+      </header>
+
+      <div id="message" class="message-box">На даний час навчання не працює</div>
+
+      <div class="wraper">
+        <div class="login-register-container">
+          <h2 class="login-container-TextLog">Вхід</h2>
+          <form id="loginForm">
+            <label class="label1" for="email">Email</label>
+            <input type="text" id="email" name="email" required />
+
+            <label class="label2" for="password">Password</label>
+            <input type="password" id="password" name="password" required />
+
+            <button class="btn-login-container" type="submit">Увійти</button>
+          </form>
+          <p id="responseMessage"></p>
+        </div>
+      </div>
+    </section>
+    <script> // Обробник події для форми
+      document
+      .getElementById("loginForm")
+      .addEventListener("submit", async (event) => {
+        event.preventDefault(); // Запобігає перезавантаженню сторінки
+        console.log("ffff");
+        // Отримуємо значення з полів форми
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+     
+        try {
+          // Виконуємо POST-запит на сервер
+          const response = await fetch("http://localhost:3000/login", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ email, password }),
+          });
+     
+          // Обробка відповіді від сервера
+          const result = await response.json();
+          localStorage.setItem("user", JSON.stringify(result));
+     
+          console.log(result);
+     
+          if (response.ok) {
+            // Якщо логін успішний
+            document.getElementById(
+              "responseMessage"
+            ).textContent = `Вітаємо, ${result.full_name}`;
+            document.getElementById("responseMessage").style.color = "green";
+            if (result.role_id == 1) {
+              window.location.href = "/ClientView.html";
+            } else {
+              window.location.href = "/DeveloperView.html";
+            }
+          } else {
+            // Якщо логін невдалий
+            document.getElementById("responseMessage").textContent =
+              result.message || "Неправильний email або пароль";
+            document.getElementById("responseMessage").style.color = "red";
+          }
+        } catch (error) {
+          console.error("Помилка запиту:", error);
+          document.getElementById("responseMessage").textContent =
+            "Помилка підключення до сервера";
+          document.getElementById("responseMessage").style.color = "red";
+        }
+      });
+     </script>
+  </body>
+</html>

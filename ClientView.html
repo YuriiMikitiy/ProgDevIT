@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ProgDev</title>
+    <link rel="stylesheet" href="/Style/style.css" />
+    <link rel="stylesheet" href="/Style/styleClientView.css" />
+    <script src="/Script/scriptClientView.js"></script>
+
+    <link rel="stylesheet" href="/Style/styleHeader.css">
+    <script src="/Script/script.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <section class="main-page-DeveloperView">
+      <h1 class="main-page-DeveloperView-Text">Клієнт</h1>
+      <header>
+        <ul>
+          <li><a href="/#about">Про Нас</a></li>
+          <li><a href="LogIn.html">Вхід</a></li>
+          <li><a href="SignUp.html">Реєстрація</a></li>
+          <li class="dropdown">
+            <a href="#" onclick="toggleSocials()">Соцмережі</a>
+            <ul class="social-links" id="socialLinks">
+              <li><a href="https://www.facebook.com/profile.php?id=100019092344173" target="_blank">Facebook</a></li>
+              <li><a href="https://x.com/qnYhmlAndRWOJJu" target="_blank">Twitter</a></li>
+              <li><a href="https://www.instagram.com/mikitiiiura/" target="_blank">Instagram</a></li>
+            </ul>
+          </li>
+          <li><a href="#" onclick="showMessage()">Навчання у нас</a></li>
+          <li>
+            <a href="/#">
+              <img src="/Images/home_icon.png" alt="Головна" class="menu-image" />
+            </a>
+          </li>
+        </ul>
+      </header>
+
+      <div id="message" class="message-box">На даний час навчання не працює</div>
+
+      <div class="container">
+        <div class="main-page-DeveloperView-Task">
+          <button
+            onclick="showTable('projects')"
+            class="btn-DeveloperView-Task"
+          >
+            Проекти
+          </button>
+          <button
+            onclick="showTable('projectadd')"
+            class="btn-DeveloperView-Task"
+          >
+            Створити<br />проект
+          </button>
+          <button
+            onclick="showTable('work_submissions')"
+            class="btn-DeveloperView-Task"
+          >
+            Звіти по<br />проектам
+          </button>
+        </div>
+        <div class="DeveloperView" id="content">
+          <!-- Table content will display here -->
+        </div>
+      </div>
+      <div id="modal" class="modal">
+        <div class="modal-content">
+          <span class="close" onclick="closeModal()">&times;</span>
+          <h2>Створити новий проект</h2>
+          <form id="createProjectForm">
+            <label for="projectName">Назва проекту:</label>
+            <input
+              type="text"
+              id="projectName"
+              name="projectName"
+              required
+            /><br /><br />
+
+            <label for="description">Опис:</label>
+            <textarea id="description" name="description" required></textarea
+            ><br /><br />
+
+            <label for="startDate">Дата початку:</label>
+            <input
+              type="date"
+              id="startDate"
+              name="startDate"
+              required
+            /><br /><br />
+
+            <label for="endDate">Дата завершення:</label>
+            <input type="date" id="endDate" name="endDate" /><br /><br />
+
+            <button type="button" onclick="createProject()">
+              Зберегти проект
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
